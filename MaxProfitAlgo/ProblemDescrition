@@ -1,0 +1,17 @@
+Stock Buy Sell to Maximize Profit
+
+The cost of a stock on each day is given in an array, find the max profit that you can make by buying and selling in those days. For example, if the given array is {100, 180, 260, 310, 40, 535, 695}, the maximum profit can earned by buying on day 0, selling on day 3. Again buy on day 4 and sell on day 6. If the given array of prices is sorted in decreasing order, then profit cannot be earned at all.
+
+Thinking:
+
+One obvious solution is to walk through the rest of the array for each starting index element (buy price) and computer array[current] - array[start], if such value is negative and keep walking, if we discover a positive value that is larger than the previous largest difference, then we reassign the largest difference to be just that.  
+
+Continue the above algorithm for each buy price and keep track of the largest difference variable.  At the end of the nested for-loop, we should then have the largest difference (profit) from a single buy and sell price.
+
+The time complexity for the above algorithm is O(n^2).
+
+Can we do better than quadratic?  
+
+After a bit of thinking, one could get the difference between the current element and keep moving a pointer to the right for as long as the numebrs are increasing.  Once we encounter a decreasing element, we compute the difference between array[current] - array[rightIndex - 1] and compare this to the previous largest difference and reassign accordingly.  
+
+There is a fairly obvious problem with the logic above, for example, I have a sequence of number {1, 2, 3, 4, 5, 6, 2, 3, 18}, then the largest difference should be 17, which the above algo computes the difference from 1 to 6, which is 5 and then set the current to be 2 and then compute the largest difference, which is 16 (18-2).  But this does not work!  I think this is a good step towards the right solution though?  Let's see if this method can be pushed further.  
