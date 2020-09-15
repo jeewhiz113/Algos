@@ -8,6 +8,8 @@ function genRandomArray(array){
 }
 
 //Insertion Sort:
+//Runtime complexity of O(n^2).
+//Spacetime complexity of O(1) or constant spacetime.
 function insertionSort(array){
   for (var i = 1; i < array.length; i++){
     var key = array[i];  //indicates the index i for which array[0 to i-1] is sorted.
