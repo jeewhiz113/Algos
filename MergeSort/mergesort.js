@@ -1,8 +1,3 @@
-/*
-What is a heap?
-
-
-*/
 
 
 
