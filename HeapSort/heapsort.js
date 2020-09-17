@@ -73,7 +73,44 @@ Algorithm:
   So one quick glance says we have n nodes and each node does log(n) amount of work, therefore, the complexity of this
   algo is N*Log(N).
 
-  
+  Now a more careful examination (counting exercise):
+  We note that for each node, instead of having log(N) complexity, which is true for the worst case scenario, it actually has L*C amount of work, for L being the level of such node and C being the constant compare and swap with the node's child.
 
+  ******************
+  So the sum would look like:
+  (N/4 is the first level nodes of the tree right above the leaves)
+  N/4 * (C) + N/8 * 2C + N/16 * 3C + ... + 1 * Log(N)*C
+  = C (N/2^2 + 2N/2^3 + 3N/2^4 + ... + Log(N))
+  
+  If we set N/4 = 2^k (for the simplicity of how the math looks) we'd have:
+
+  C2^k(1/2^0 + 2/2 + 3/2^2 + 4/2^3 + ... + (k + 1)/2^k)  ////The last term is a little off I think.
+  (maybe ask Ali?)
+  which is bounded by the (infinite) geometric series that converges to (take out a calculus book and check this tomorrow!)
+
+  And so the conclusion here is that turning an arbitrary array into a max-heap is O(N) complexity!  The punch line here is that the series is bounded by a constant!
+  ************
+
+  heapsort: 
+  1. build-max-heap from the given array.
+  2. find max element at A[1]
+  3. Swap elements A[n] with A[1], now max element is at the end of the array
+  4. Discard node n from heap and decrement heap-size
+  5. new root may violate max-heap property, so we run max-heapify on the root node and repeat step 1.
+
+  So the run time complexity: build max heap is O(N) and once we have a max-heap, we take out the largest element and run max-heapify again which is O(logN) and this is ran on ALL nodes, which gives us an overall time complexity of O(N*LogN)
     
      */
+
+//Now we start the algo:
+
+
+
+
+
+
+
+
+
+//Then finish mergesort.js and quicksort.js first before jumping to bst.
+
