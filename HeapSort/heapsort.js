@@ -103,7 +103,9 @@ Algorithm:
      */
 
 //Now we start the algo:
-
+function heapify(array, i){
+  
+}
 
 
 
