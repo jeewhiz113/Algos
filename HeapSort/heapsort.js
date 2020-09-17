@@ -34,6 +34,46 @@ Operations to consider for time-complexity:
 
    Looking ahead, if we do this recursively at different levels of the tree, then we impose the max-heap property to an array.
 
-So for example, if we run 
+So for example, if we run max-heapify on the following array/tree:
 
-*/
+            16
+          /    \
+         4     10
+       /  \    /  \
+      14   7  9    3
+     / \   /
+    2   8  1
+         
+    We run Max-Heapify (A, 1): at index 1, we see a violation.
+    Now the subtree to the left and to the right are max-heaps.
+
+    Now max-heapify will exchange 4 with the bigger of 14 and 7.  So we exchange 4 and 14. 
+    So we have:
+         14
+        /  \
+       4    7
+      /\   /
+     2  8  1
+
+     Then we max-heapify (A, 4) and we exchange 4 with 8 or A[3] with A[7].
+
+     Now what is the time complexity of max-heapify? 
+     Since we have a nearly complete Binary Tree, then height of the tree is Log(N), worst case, we keep bubbling down, and the height of the tree is log(N), therefore some number of comparisons but bounded by some constant C * Log(N).  
+    
+Now how to use max-heapify to build max-heap? (converting an arbitrary array to a max-heap)
+
+Algorithm:
+  for (i = n/2 down to 1){
+    max_heapify (A, i)
+  }
+
+  //note leaves are already max-heap so (n/2 + 1) to n are all leaves.  So visually speaking, we are working on level
+  1 node and level 2 node and so on and so up to the top of the tree.
+
+  So one quick glance says we have n nodes and each node does log(n) amount of work, therefore, the complexity of this
+  algo is N*Log(N).
+
+  
+
+    
+     */
