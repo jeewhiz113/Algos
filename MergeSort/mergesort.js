@@ -1,9 +1,6 @@
 
 
 
-
-
-
 let randomArray = [];
 //Write a function to generate a random array
 function genRandomArray(array){

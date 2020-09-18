@@ -102,12 +102,57 @@ Algorithm:
     
      */
 
-//Now we start the algo:
-function heapify(array, i){
-  
+//Now we start the algo:  n is important, it allows me to shrink the heap in the recursive calls.
+//i is the index of the current potential violation.
+function heapify(array, n, i){
+  var largest = i; //initialize largest as root
+  var left = 2*i + 1;  //left child index
+  var right = 2*i + 2; //right child index
+  //if left child is larger than root
+  if (left < n && array[left] > array[largest]){  //this here is important since < n allows me to shrink my heap in the recursive calls.
+    largest = left;
+  }
+  if (right < n && array[right]> array[largest]){
+    largest = right;
+  }
+  if (largest !== i){
+    swap(array, largest, i);
+    heapify(array, n, largest);  //once the swap has been made, the potential violation is at index largest, so we run heapify on largest.
+  }
+  //if largest is not i, then swap the two elements in the array
 }
 
+function heapSort(array){
+  //build max-heap
+  for (var i = array.length/2-1; i>=0; i--){  //start at level 1 (non-leaves level)
+    heapify(array, array.length, i);
+  }
+  //One by one extract an element from heap
+  for (var i = array.length-1; i>0; i--){  
+    swap(array, 0, i);  //largest element now at the end of the array.
+    heapify(array, i, 0);  //recall i goes down, hence shrinking the array.
 
+  }
+}
+
+function swap(array, i, j){
+  var temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+}
+
+let randomArray = [];
+//Write a function to generate a random array
+function genRandomArray(array){
+  for (var i = 0; i < 20; i++){
+    array.push(Math.floor(Math.random()*300));
+  }
+}
+//blah what is wrong?!?!?
+genRandomArray(randomArray);
+console.log(randomArray);
+heapSort(randomArray);
+console.log(randomArray);
 
 
 
