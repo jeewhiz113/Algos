@@ -153,11 +153,3 @@ genRandomArray(randomArray);
 console.log(randomArray);
 heapSort(randomArray);
 console.log(randomArray);
-
-
-
-
-
-
-//Then finish mergesort.js and quicksort.js first before jumping to bst.
-

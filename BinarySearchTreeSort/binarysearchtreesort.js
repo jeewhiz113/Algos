@@ -50,5 +50,57 @@ So for each node, you'd have a left(x) and right(x) pointers.
 BST invariant property, for all nodes x, if y is in the left subtree of x, then y <= x and if y is in the right subtree of x, then y >= x.
           
 Now lets think about the time complexity of the following operations:
-Insertion takes O(Log N) time, simply bubble
-        */  
+
+Before we do, we remind ourselves that the original problem is the single runway reservation problem and we wish to do the three operations in O(LogN) time!
+
+We start with an empty BST and insert: (k minute check with k = 3)
+Insert 49, 79, 46, 41, next we try and insert 42. Go left at 49, go left at 46 and then we would have gone right on 41, but 42 is not 3 away from 41, therefore we do not insert 42.
+              49
+              /\
+           46   79
+           /
+          41
+
+So here we note if h is the height of the BST, then insertion is done in O(h) time, which is NOT what we originally wanted, we wanted O(logN) time.
+
+As a side note, we note some common operations and their time complexity for BST:
+
+1. findMin() - keep going to the left so we have O(h) time. (similarly for max)
+2. findNextLarger(x), so given 46, this should return 49.  This can be done in O(h) time.  HOW????????
+
+Now we stop here and say (up to the problem of O(h) and not O(LogN)), BST solves our initial quest to finding a data structure with the specified run time.  But now we introduce a new operation: how many planes are scheduled to land at times <= t, and we wish to answer the question above with O(h) time.
+
+We augment our BST structure by adding another datapoint to each node.  For each node x, we add a number that represents the number of nodes of the subtree of the original BST rooted in x.
+
+              49
+              /\
+           46   79
+           /
+          41
+
+So at root 49, we have size = 4, at node 79, we have size = 1, at node 46, we have size = 2.
+
+This can be done fairly trivially, when we insert an element to a BST, we simple increment size by 1 along its path of insertion.  
+
+So then to answer the question of how many planes are scheduled to land before time t?
+
+Look at the example below:
+               49
+              /  \
+           46     79
+           /      / \
+          41     64  83
+
+And t say t = 79, so we find the number of planes scheduled to land <= 79.
+
+Step 1: walk down the tree to find desired time,
+Step 2: once a node is traversed, add 1 then add all the nodes on its left subtree.
+
+For example, 79 > 49, so we go right but before doing so, add 1 (node at 49) and 2 (left subtree of 49).  Repeat the above 2 steps everytime we move right and do not do anything when moving left.  Keep doing so until we point to the value == t or the pointer points to null.
+
+So if t = 79, we have 1 + 2 + 1 + 1 = 5, which is the number <= 5.
+
+Now conclusion: we know BST now, but we still have not solved O(log N) for insertion.  Imagine, we have a degenerate BST (think of a tree that looks like a list, keeps going to the left or right, then insert takes O(n) = O(h) time since all the elements go to the left or right of the BST.)
+        
+
+*/  
