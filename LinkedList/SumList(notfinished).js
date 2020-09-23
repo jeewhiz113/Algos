@@ -9,7 +9,6 @@ class LinkedList {
   constructor(){
     this.head = null;  
   }
-
   add(value){
     var node = new Node(value);
     var current;
@@ -45,25 +44,18 @@ class LinkedList {
     }
     console.log(str);
   }
-  //2.2: Write an algorithm to return the kth to last element of a LinkedList.
-  //Idea: walk to the end of the LinkedList and if k is > length of LinkedList, then walk length of LL - k nodes.
-  //Another better idea: Place two pointers down and move the runner pointer k nodes down, then move both pointers simultaneously, when the runner pointer is pointing at the last node, then the current pointer is the kth to last element!  Hopefully, we recognize the importance of having two pointers!
-  //This algo takes O(n) time and O(1) space.
-  nthToLast(k){  //we assume the length of LL is > k
-    var current = this.head;
-    var runner = this.head;
-    for (var i = 0; i < k; i++){
-      runner = runner.next;  //run this k times.
-    }
-    while (runner.next != null){
-      current = current.next;
-      runner = runner.next;
-    }
-    console.log('kth to the last is ' + current.value);
-  }
-  //How to do it recursively??
+  //You have two numbers represented by a linkedlist, where each node contains a single digit.  The digits are stored in reverse order, such that the 1's digit is at the head of the list.  Write a function that adds the two numbers and returns the sum as a linkedlist. (use recursion!)
 }
-
+function SumList(l1, l2){
+  var result = "";
+  var l1Current = l1;
+  var l2Current = l2;
+  while(l1Current != null || l2Current != null){
+    if (l1Current != null && l2Current != null){
+      l1Current.value + l2Current.value
+    }
+  }
+}
 //Implementations:
 var ll = new LinkedList();  
 // adding element to the list 
@@ -79,6 +71,3 @@ ll.add(10);
 ll.add(40); 
 ll.add(30);
 ll.add(50); 
-// returns 10 20 30 40 50 
-ll.printList(); 
-ll.nthToLast(4);

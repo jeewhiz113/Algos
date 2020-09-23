@@ -66,6 +66,24 @@ class LinkedList {
       current = current.next;
     }
   }
+  //A faster solution but with a O(N) space complexity:  We keep elements we have seen in a set, now we ahve constant lookup on a set, so we simply traverse the array and deleting the node with previously seen values (Remember the aglo!)
+  removeDupsFast(){
+    if (this.head == null){
+      return
+    }
+    var previous = null;
+    var current = this.head;
+    var set = new Set();
+    while (current != null){
+      if (set.has(current.value)){
+        previous.next = current.next;
+      }else {
+        set.add(current.value);
+        previous = current;
+      }
+      current = current.next;
+    }
+  }
 }
 
 //Implementations:
@@ -85,6 +103,6 @@ ll.add(30);
 ll.add(50); 
 // returns 10 20 30 40 50 
 ll.printList(); 
-ll.removeDups();  
+ll.removeDupsFast();  
 ll.printList(); 
 //remov
