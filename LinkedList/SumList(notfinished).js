@@ -44,18 +44,16 @@ class LinkedList {
     }
     console.log(str);
   }
-  //You have two numbers represented by a linkedlist, where each node contains a single digit.  The digits are stored in reverse order, such that the 1's digit is at the head of the list.  Write a function that adds the two numbers and returns the sum as a linkedlist. (use recursion!)
+  //You have two numbers represented by a linkedlist, where each node contains a single digit.  The digits are stored in reverse order, such that the 1's digit is at the head of the list.  Write a function that adds the two numbers and returns the sum as a linkedlist. 
 }
-function SumList(l1, l2){
-  var result = "";
-  var l1Current = l1;
-  var l2Current = l2;
-  while(l1Current != null || l2Current != null){
-    if (l1Current != null && l2Current != null){
-      l1Current.value + l2Current.value
-    }
-  }
+
+//For the above problem, we write a function that takes in the head of two LL and simply return the newly created LL
+function sumList(l1, l2){
+  var result = new LinkedList();  //So result is a LinkedList and ll.head is a pointer to the head of this ll.
+  if ()
 }
+
+
 //Implementations:
 var ll = new LinkedList();  
 // adding element to the list 

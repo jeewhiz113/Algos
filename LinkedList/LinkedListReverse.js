@@ -56,6 +56,17 @@ class LinkedList {
     }
     return ll;
   } 
+  /*
+  var ll = new LinkedList();
+  var ll.head = null;
+  while(current != null)
+  
+  review the algo above:  node n = new Node(current.value);  //made the node
+  n.next = ll.head;     //get next to point to ll.head, which is the head of the reversed ll
+  ll.head = n;        //get ll.head to be pointing at the newly made node.
+                  //
+  current = current.next;
+  */
   //Now we wish to reverse the LL in place!
   inPlaceReversal(){
     
