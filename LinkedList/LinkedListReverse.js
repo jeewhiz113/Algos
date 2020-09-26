@@ -56,20 +56,19 @@ class LinkedList {
     }
     return ll;
   } 
-  /*
-  var ll = new LinkedList();
-  var ll.head = null;
-  while(current != null)
   
-  review the algo above:  node n = new Node(current.value);  //made the node
-  n.next = ll.head;     //get next to point to ll.head, which is the head of the reversed ll
-  ll.head = n;        //get ll.head to be pointing at the newly made node.
-                  //
-  current = current.next;
-  */
-  //Now we wish to reverse the LL in place!
   inPlaceReversal(){
-    
+    var prev = null;
+    var current = this.head;
+    var next = null;
+    while(current != null){
+      next = current.next;  //set next, which is current.next
+      current.next = prev;  //reverse: set current.next to be previous
+      //now set previous and current (move previous and current along)
+      prev = current;
+      current = next;
+    }
+    this.head = prev;  //important to set the head of the ll to the pointer, pointing at the new head
   }
 }
 
@@ -90,5 +89,7 @@ ll.add(40);
 ll.add(30);
 ll.add(50); 
 ll.printList();
-var llreverse = ll.reverseList();
-llreverse.printList();
+ll.inPlaceReversal();
+ll.printList();
+//var llreverse = ll.reverseList();
+//llreverse.printList();
