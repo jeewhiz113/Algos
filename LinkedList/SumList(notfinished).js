@@ -48,9 +48,11 @@ class LinkedList {
 }
 
 //For the above problem, we write a function that takes in the head of two LL and simply return the newly created LL
-function sumList(l1, l2){
-  var result = new LinkedList();  //So result is a LinkedList and ll.head is a pointer to the head of this ll.
-  if ()
+function sumList(l1Current, l2Currrent){
+  if (l1Current == null && l2Current == null && carry == 0){
+    return null;
+  }
+  var result = new LinkedList();  //initialize an empty linkedlist.
 }
 
 

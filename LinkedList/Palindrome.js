@@ -43,7 +43,7 @@ class LinkedList {
     }
     console.log(str);
   }
-  reverseList(){
+  reverseList(){  //walk through the LL and construct a LL pointing backwards bascially.
     var ll = new LinkedList();
     var current = this.head;
     while(current != null){

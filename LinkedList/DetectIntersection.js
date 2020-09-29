@@ -1,4 +1,4 @@
-//DEBUG THIS SOLUTION!
+
 class Node{
   constructor(value, next=null){  //a node takes a value and a next pointer, it is by default null.
     this.value = value;
@@ -71,7 +71,7 @@ function getTailandSize(ll){
   var current = ll.head;
   
   if (current == null){
-    return new Last();
+    return;
   }
   var size =1;
   while (current.next != null){
@@ -89,19 +89,21 @@ function findIntersect(ll1, ll2){
   }
   //case when tails are pointer at the same nodes.
   if (last1.size == last2.size){
-    return walkAndFindIntersect(last1.tail, last2.tail);
+    return walkAndFindIntersect(ll1.head, ll2.head);
   }else if (last1.size > last2.size){
     var difference = last1.size - last2.size;
+    var current = ll1.head;
     for (var i = 1; i <= difference; i++){
-      last1.tail = last1.tail.next;
+      current = current.next;;
     }
-    return walkAndFindIntersect(last1.tail, last2.tail);
+    return walkAndFindIntersect(current, ll2.head);
   }else if (last2.size > last1.size){
     var difference = last2.size - last1.size;
+    var current = ll2.head;
     for (var i = 1; i <= difference; i++){
-      last2.tail = last2.tail.next;
+      current = current.next;
     }
-    return walkAndFindIntersect(last1.tail, last2.tail);
+    return walkAndFindIntersect(ll1.head, current);
   }
   
 }
@@ -141,5 +143,7 @@ ll2.add(40);
 ll2.add(90);
 var tailPointer = getTailandSize(ll2);
 tailPointer.tail.next = ll1.head;
+
+
 var intersect = findIntersect(ll1, ll2);
-console.log(tail);
+console.log(intersect.value);
