@@ -64,7 +64,7 @@ Solution: If we use the fast and slow runner technique, a moments thought will c
 function loopDetect(ll){
   var slow = ll.head;
   var fast = ll.head;
-  while (fast != null){
+  while (fast.next != null){
     slow = slow.next;
     fast = fast.next.next; //There is an issue here!
     if (slow == fast){
@@ -104,5 +104,5 @@ ll.add(30);
 ll.add(50);  
 ll.add(20); 
 ll.add(10);
-//ll.connectTo(12);
+ll.connectTo(12);
 console.log(loopDetect(ll));
