@@ -56,18 +56,6 @@ class LinkedList {
   }
 }
 
-function loopDetect(ll){
-  var slow = ll.head;
-  var fast = ll.head;
-  while (fast.next != null){
-    slow = slow.next;
-    fast = fast.next.next; //There is an issue here!
-    if (slow == fast){
-      return true;
-    }
-  }
-  return false;
-}
 //Problem:  Given a circular linked list, return the node at the start of the loop.
 /*
   Solution: Apply the fast and slow runner technique.  Assume slow runner enters the looped portion after k steps, then fast runner is k steps into the loop.  Now we know the following:
@@ -80,6 +68,32 @@ function loopDetect(ll){
 
   Conclusion: when both pointers meet, they are K away from the start of the loop.  So if we keep a pointer at the collision-node and a pointer at the start of the LL, and walk them node by node, the pointer at which they both are pointing at the same node is the start of the loop.  Now we simply return such node.
 */
+
+function findBeginning(ll){
+  var slow = ll.head;
+  var fast = ll.head;
+  //identify the point of collision:
+  while(fast != null && fast.next != null){
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow == fast){
+      //found the collision point:
+      break;  //get out of the while loop;
+    }
+  }
+  if (fast == null || fast.next == null){
+    return null; //no loop;
+  }
+  //At this point, we know fast and slow are pointing at the same node;
+  slow = ll.head;
+  while (slow != fast){  //move both pointers along and when they meet, that the is node of intersection.
+    slow = slow.next;
+    fast = fast.next;
+  }
+  return fast;
+}
+
+//Test the above algo.
 var ll = new LinkedList();
 ll.add(10);  
 ll.add(20); 
@@ -110,3 +124,5 @@ ll.add(30);
 ll.add(50);  
 ll.add(20); 
 ll.add(10);
+ll.connectTo(88);
+console.log(findBeginning(ll).value);
