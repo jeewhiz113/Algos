@@ -1,6 +1,6 @@
 
 class Node{
-  constructor(value, next=null){  //a node takes a value and a next pointer, it is by default null.
+  constructor(next=null){  //a node takes a value and a next pointer, it is by default null.
     this.value = value;
     this.next = next;
   }
@@ -65,17 +65,33 @@ function partition(ll, pValue){
     var next = node.next; // keep a pointer to the next node
     node.next = null; //set the current node's next pointer to null.  Then we can assign the current node to either the left LL or the right LL
     if (node.value < pValue){
-      if (leftHead == null){ //initially
+      if (leftHead == null){ //initially, set leftHead to be the first node and then leftEnd to be leftHead
         leftHead = node;
-        leftEnd = leafHead;
+        leftEnd = leftHead;
       }else {
-        leftEnd.next  //But How do we do null pointer in a node.
+        leftEnd.next = node;  //the next pointer of the previously last node points to the current node.
+        leftEnd = node;
+      }
+    }else { //case when the value of the node is >= to pValue
+      if (rightHead == null){ //initialize the right LL
+        rightHead = node;
+        rightEnd = rightHead;
+      }else {
+        rightHead.next = node;
+        rightEnd = node;
       }
     }
+    node = next;  //move node along to the next node in the original list.
   }
+  //In case the left partition is empty:
+  if (leftHead == null){
+    return rightHead;
+  }
+  leftEnd.next = rightHead;
+  return leftEnd;
 }
 
 /*
-
+Test out the partition with some LL.
 
 */
