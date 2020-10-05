@@ -48,26 +48,3 @@ class LinkedList {
 }
 
 //For the above problem, we write a function that takes in the head of two LL and simply return the newly created LL
-function sumList(l1Current, l2Currrent){
-  if (l1Current == null && l2Current == null && carry == 0){
-    return null;
-  }
-  var result = new LinkedList();  //initialize an empty linkedlist.
-}
-
-
-//Implementations:
-var ll = new LinkedList();  
-// adding element to the list 
-ll.add(10);  
-// prints 10 
-ll.printList(); 
-// adding more elements to the list 
-ll.add(20); 
-ll.add(50); 
-ll.add(30); 
-ll.add(20); 
-ll.add(10);  
-ll.add(40); 
-ll.add(30);
-ll.add(50); 
